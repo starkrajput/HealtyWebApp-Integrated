@@ -1,0 +1,132 @@
+﻿@{
+    ViewData["Title"] = "About Us";
+}
+@model HCMS.Models.Category
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .list-group-item {
+            background-color: transparent;
+            border: none;
+            border-bottom: 1px solid #dee2e6;
+            padding: 10px 0;
+        }
+
+        .list-group-item:last-child {
+            border-bottom: none;
+        }
+
+        .list-group-item h4 {
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .list-group-item p {
+            margin-bottom: 5px;
+        }
+
+        .list-group-item ul {
+            margin-top: 5px;
+        }
+
+        .list-group-item ul li {
+            list-style-type: none;
+            margin-bottom: 5px;
+            padding-left: 0;
+        }
+
+        .list-group-item ul li::before {
+            content: "•";
+            margin-right: 5px;
+            color: #007bff;
+        }
+
+        .list-group-item:last-child ul {
+            margin-bottom: 0;
+        }
+
+        .file-management {
+            animation: slide-up 1s ease-in-out;
+        }
+
+      
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>About Us</h2>
+        <div class="list-group">
+            <div class="list-group-item">
+                <h4>Company Overview</h4>
+                <p>Headquartered in Mohali, India, the company was incorporated in the year 1999. Today, with over 20 years of experience, we are one of the fastest growing companies in the marine IT field serving many top shipping companies around the globe.</p>
+                <p>Our comprehensive and integrated Ship Management Software titled “SMMS – Ship Maintenance & Management System” has been implemented on more than 1500 vessels worldwide.</p>
+            </div>
+            <div class="list-group-item">
+                <h4>Our Business</h4>
+                <ul>
+                    <li>Development of Software Applications</li>
+                    <li>Creation of PMS & Inventory Databases for Vessels</li>
+                    <li>24x7 Technical Support</li>
+                    <li>On-Site Implementations and Trainings</li>
+                    <li>Remote and On-board I.T. Services</li>
+                    <li>Documents Digitization</li>
+                </ul>
+            </div>
+            <div class="list-group-item">
+                <h4>Employees</h4>
+                <p>120+ <strong>Experienced Marine Engineers</strong></p>
+            </div>
+            <div class="list-group-item">
+                <h4>Clients</h4>
+                <p>50+ <strong>Companies</strong></p>
+            </div>
+            <div class="list-group-item">
+                <h4>Installations</h4>
+                <p>1500+ <strong>Vessels</strong></p>
+            </div>
+            <div class="list-group-item">
+                <h4>Training Centers</h4>
+                <p>40+ <strong>Training Centers</strong></p>
+            </div>
+        </div>
+        <div class="file-management list-group-item">
+            <h4>File Management System</h4>
+            <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus vestibulum dapibus lorem, eget faucibus mauris.</p>
+            <p>Features:</p>
+            <ul>
+                <li>Secure file storage</li>
+                <li>Easy file access</li>
+                <li>Version control</li>
+                <li>Collaboration tools</li>
+            </ul>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

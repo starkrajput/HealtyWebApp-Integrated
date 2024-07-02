@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Automation Controller</h1>
+
+<div>
+    <button id="startRecordingBtn" class="btn btn-primary">Start Recording</button>
+    <button id="stopRecordingBtn" class="btn btn-danger" style="display:none;">Stop Recording</button>
+</div>
+
+<div style="margin-top: 20px;">
+    <button id="repeatAutomationBtn" class="btn btn-success" style="display:none;">Repeat Automation</button>
+    <button id="stopAutomationBtn" class="btn btn-warning" style="display:none;">Stop Automation</button>
+</div>
+
+<form asp-action="RepeatAutomation" method="post">
+    <input type="hidden" id="recordedEventsInput" name="recordedEvents" />
+</form>
+
+<script>
+    var recordedEvents = [];
+
+    document.getElementById("startRecordingBtn").addEventListener("click", function () {
+        recordedEvents = []; // Clear previously recorded events
+        document.getElementById("startRecordingBtn").style.display = "none";
+        document.getElementById("stopRecordingBtn").style.display = "block";
+        document.addEventListener("keydown", recordKeyEvent);
+        document.addEventListener("mousedown", recordMouseEvent);
+    });
+
+    document.getElementById("stopRecordingBtn").addEventListener("click", function () {
+        document.getElementById("startRecordingBtn").style.display = "block";
+        document.getElementById("stopRecordingBtn").style.display = "none";
+        document.removeEventListener("keydown", recordKeyEvent);
+        document.removeEventListener("mousedown", recordMouseEvent);
+        document.getElementById("repeatAutomationBtn").style.display = "block";
+        document.getElementById("stopAutomationBtn").style.display = "block";
+        console.log(recordedEvents); // Output recorded events to console
+    });
+
+    document.getElementById("repeatAutomationBtn").addEventListener("click", function () {
+        // Serialize the recorded events array and set it as the value of the hidden input field
+        document.getElementById("recordedEventsInput").value = JSON.stringify(recordedEvents);
+        // Submit the form to repeat automation
+        document.querySelector("form").submit();
+    });
+
+    document.getElementById("stopAutomationBtn").addEventListener("click", function () {
+        // Stop automation if needed
+    });
+
+    function recordKeyEvent(event) {
+        recordedEvents.push({ type: "Key", keyCode: event.keyCode, key: event.key });
+    }
+
+    function recordMouseEvent(event) {
+        recordedEvents.push({ type: "Mouse", clientX: event.clientX, clientY: event.clientY });
+    }
+</script>

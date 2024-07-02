@@ -1,0 +1,17 @@
+C:\Users\DELL\source\repos\HCMS\HCMS.Models\bin\Debug\net8.0\HCMS.Models.deps.json
+C:\Users\DELL\source\repos\HCMS\HCMS.Models\bin\Debug\net8.0\HCMS.Models.runtimeconfig.json
+C:\Users\DELL\source\repos\HCMS\HCMS.Models\bin\Debug\net8.0\HCMS.Models.dll
+C:\Users\DELL\source\repos\HCMS\HCMS.Models\bin\Debug\net8.0\HCMS.Models.pdb
+C:\Users\DELL\source\repos\HCMS\HCMS.Models\bin\Debug\net8.0\HCMS.Utility.dll
+C:\Users\DELL\source\repos\HCMS\HCMS.Models\bin\Debug\net8.0\HCMS.Utility.pdb
+C:\Users\DELL\source\repos\HCMS\HCMS.Models\obj\Debug\net8.0\HCMS.Models.csproj.AssemblyReference.cache
+C:\Users\DELL\source\repos\HCMS\HCMS.Models\obj\Debug\net8.0\HCMS.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DELL\source\repos\HCMS\HCMS.Models\obj\Debug\net8.0\HCMS.Models.AssemblyInfoInputs.cache
+C:\Users\DELL\source\repos\HCMS\HCMS.Models\obj\Debug\net8.0\HCMS.Models.AssemblyInfo.cs
+C:\Users\DELL\source\repos\HCMS\HCMS.Models\obj\Debug\net8.0\HCMS.Models.csproj.CoreCompileInputs.cache
+C:\Users\DELL\source\repos\HCMS\HCMS.Models\obj\Debug\net8.0\HCMS.Mod.D744BB83.Up2Date
+C:\Users\DELL\source\repos\HCMS\HCMS.Models\obj\Debug\net8.0\HCMS.Models.dll
+C:\Users\DELL\source\repos\HCMS\HCMS.Models\obj\Debug\net8.0\refint\HCMS.Models.dll
+C:\Users\DELL\source\repos\HCMS\HCMS.Models\obj\Debug\net8.0\HCMS.Models.pdb
+C:\Users\DELL\source\repos\HCMS\HCMS.Models\obj\Debug\net8.0\HCMS.Models.genruntimeconfig.cache
+C:\Users\DELL\source\repos\HCMS\HCMS.Models\obj\Debug\net8.0\ref\HCMS.Models.dll

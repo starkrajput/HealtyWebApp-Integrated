@@ -1,0 +1,171 @@
+﻿@model HCMS.Models.Patient
+
+@{
+    ViewBag.Title = "Create Patient";
+}
+
+<h2>Create Patient</h2>
+
+<form method="post" asp-action="Create">
+    <!-- Personal Identification Information -->
+    <div class="form-group">
+        <label asp-for="FirstName" class="control-label"></label>
+        <input asp-for="FirstName" class="form-control" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MiddleName" class="control-label"></label>
+        <input asp-for="MiddleName" class="form-control" />
+        <span asp-validation-for="MiddleName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LastName" class="control-label"></label>
+        <input asp-for="LastName" class="form-control" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DateOfBirth" class="control-label"></label>
+        <input asp-for="DateOfBirth" class="form-control" />
+        <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Gender" class="control-label"></label>
+        <select asp-for="Gender" class="form-control">
+            <option value="">-- Select Gender --</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Non-binary">Non-binary</option>
+            <option value="Other">Other</option>
+        </select>
+        <span asp-validation-for="Gender" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Age" class="control-label"></label>
+        <input asp-for="Age" class="form-control" />
+        <span asp-validation-for="Age" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="NationalIdentificationNumber" class="control-label"></label>
+        <input asp-for="NationalIdentificationNumber" class="form-control" />
+        <span asp-validation-for="NationalIdentificationNumber" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="HospitalIdentificationNumber" class="control-label"></label>
+        <input asp-for="HospitalIdentificationNumber" class="form-control" />
+        <span asp-validation-for="HospitalIdentificationNumber" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MaritalStatus" class="control-label"></label>
+        <input asp-for="MaritalStatus" class="form-control" />
+        <span asp-validation-for="MaritalStatus" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Photograph" class="control-label"></label>
+        <input type="file" asp-for="Photograph" class="form-control" />
+        <span asp-validation-for="Photograph" class="text-danger"></span>
+    </div>
+    <!-- End of Personal Identification Information -->
+
+    <!-- Contact Information -->
+    <div class="form-group">
+        <label asp-for="HomeAddress" class="control-label"></label>
+        <input asp-for="HomeAddress" class="form-control" />
+        <span asp-validation-for="HomeAddress" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="City" class="control-label"></label>
+        <input asp-for="City" class="form-control" />
+        <span asp-validation-for="City" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="State" class="control-label"></label>
+        <input asp-for="State" class="form-control" />
+        <span asp-validation-for="State" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Country" class="control-label"></label>
+        <input asp-for="Country" class="form-control" />
+        <span asp-validation-for="Country" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PostalCode" class="control-label"></label>
+        <input asp-for="PostalCode" class="form-control" />
+        <span asp-validation-for="PostalCode" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="HomePhone" class="control-label"></label>
+        <input asp-for="HomePhone" class="form-control" />
+        <span asp-validation-for="HomePhone" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="MobilePhone" class="control-label"></label>
+        <input asp-for="MobilePhone" class="form-control" />
+        <span asp-validation-for="MobilePhone" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="WorkPhone" class="control-label"></label>
+        <input asp-for="WorkPhone" class="form-control" />
+        <span asp-validation-for="WorkPhone" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EmailAddress" class="control-label"></label>
+        <input asp-for="EmailAddress" class="form-control" />
+        <span asp-validation-for="EmailAddress" class="text-danger"></span>
+    </div>
+    <!-- End of Contact Information -->
+
+    <!-- Emergency Contact Information -->
+    <div class="form-group">
+        <label asp-for="EmergencyContactName" class="control-label"></label>
+        <input asp-for="EmergencyContactName" class="form-control" />
+        <span asp-validation-for="EmergencyContactName" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EmergencyContactRelation" class="control-label"></label>
+        <input asp-for="EmergencyContactRelation" class="form-control" />
+        <span asp-validation-for="EmergencyContactRelation" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EmergencyContactPhone" class="control-label"></label>
+        <input asp-for="EmergencyContactPhone" class="form-control" />
+        <span asp-validation-for="EmergencyContactPhone" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="EmergencyContactAddress" class="control-label"></label>
+    <input asp-for="EmergencyContactAddress" class="form-control" />
+    <span asp-validation-for="EmergencyContactAddress" class="text-danger"></span>
+</div>
+<!-- End of Emergency Contact Information -->
+
+<!-- Demographic Information -->
+<div class="form-group">
+    <label asp-for="Race" class="control-label"></label>
+    <input asp-for="Race" class="form-control" />
+    <span asp-validation-for="Race" class="text-danger"></span>
+</div>
+<!-- End of Demographic Information -->
+
+<div class="form-group">
+    <button type="submit" class="btn btn-primary">Create</button>
+</div>
+</form>

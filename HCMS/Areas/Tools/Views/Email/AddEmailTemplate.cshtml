@@ -1,0 +1,23 @@
+﻿@model HCMS.Models.EmailTemplates
+
+@{
+    ViewData["Title"] = "Add Template";
+}
+
+<h2>Add Email Template</h2>
+
+<form asp-action="SaveTemplate" method="post">
+    <div class="form-group">
+        <label for="templateName">Template Name:</label>
+        <input type="text" class="form-control" id="templateName" name="TemplateName" required>
+    </div>
+    <div class="form-group">
+        <label for="subject">Subject:</label>
+        <input type="text" class="form-control" id="subject" name="Subject" required>
+    </div>
+    <div class="form-group">
+        <label for="content">Content:</label>
+        <textarea class="form-control" id="content" name="Content" rows="6" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Save Template</button>
+</form>

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<HCMS.Models.Admission>
+
+@{
+    ViewBag.Title = "Admissions";
+}
+
+<h2>Admissions</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Patient.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdmissionDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BedNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AttendingDoctor.FullName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Patient.FirstName
+                )
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdmissionDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BedNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AttendingDoctor.FullName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.AdmissionId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.AdmissionId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.AdmissionId })
+            </td>
+        </tr>
+    }
+
+</table>

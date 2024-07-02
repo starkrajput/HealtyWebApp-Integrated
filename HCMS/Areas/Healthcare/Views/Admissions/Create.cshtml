@@ -1,0 +1,123 @@
+﻿@model HCMS.Models.Admission
+
+<div class="card shadow border-0 my-4">
+    <div class="card-header bg-secondary bg-gradient ml-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-white py-2">Create Admission</h2>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <form method="post" class="row" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+
+            <div class="border p-3">
+                @* Display validation summary *@
+                @if (!ViewData.ModelState.IsValid)
+                {
+                    <div class="alert alert-danger">
+                        @Html.ValidationSummary(true)
+                    </div>
+                }
+
+                <div class="form-floating py-2 col-12">
+                    <label for="PatientId" class="ms-2">Patient</label>
+                    <select id="PatientId" name="PatientId" class="form-select border-0 shadow">
+                        <option disabled selected>--Select Patient--</option>
+                        @foreach (var patient in ViewBag.Patients as SelectList)
+                        {
+                            <option value="@patient.Value">@patient.Text</option>
+                        }
+                    </select>
+                    <span asp-validation-for="PatientId" class="text-danger"></span>
+                </div>
+
+                <div class="form-floating py-2 col-12">
+                    <input type="datetime-local" name="AdmissionDate" class="form-control border-0 shadow" />
+                    <label for="AdmissionDate" class="ms-2">Admission Date</label>
+                    <span asp-validation-for="AdmissionDate" class="text-danger"></span>
+                </div>
+
+                <div class="form-floating py-2 col-12">
+                    <input type="text" name="Department" class="form-control border-0 shadow" />
+                    <label for="Department" class="ms-2">Department</label>
+                    <span asp-validation-for="Department" class="text-danger"></span>
+                </div>
+
+                <div class="form-floating py-2 col-12">
+                    <input type="text" name="BedNumber" class="form-control border-0 shadow" />
+                    <label for="BedNumber" class="ms-2">Bed Number</label>
+                    <span asp-validation-for="BedNumber" class="text-danger"></span>
+                </div>
+
+                <div class="form-floating py-2 col-12">
+                    <label for="AttendingDoctorId" class="ms-2">Attending Doctor</label>
+                    <select id="AttendingDoctorId" name="AttendingDoctorId" class="form-select border-0 shadow">
+                        <option disabled selected>--Select Doctor--</option>
+                        @foreach (var doctor in ViewBag.Doctors as SelectList)
+                        {
+                            <option value="@doctor.Value">@doctor.Text</option>
+                        }
+                    </select>
+                    <span asp-validation-for="AttendingDoctorId" class="text-danger"></span>
+                </div>
+
+                <div class="py-2 col-12">
+                    <label for="ReasonForAdmission" class="ms-2 text-muted">Reason For Admission</label>
+                    <textarea id="ReasonForAdmission" name="ReasonForAdmission" class="form-control border-0 shadow"></textarea>
+                    <span asp-validation-for="ReasonForAdmission" class="text-danger"></span>
+                </div>
+
+                <div class="py-2 col-12">
+                    <label for="AdmissionNotes" class="ms-2 text-muted">Admission Notes</label>
+                    <textarea id="AdmissionNotes" name="AdmissionNotes" class="form-control border-0 shadow"></textarea>
+                    <span asp-validation-for="AdmissionNotes" class="text-danger"></span>
+                </div>
+
+                <div class="form-floating py-2 col-12">
+                    <input type="datetime-local" name="DischargeDate" class="form-control border-0 shadow" />
+                    <label for="DischargeDate" class="ms-2">Discharge Date</label>
+                    <span asp-validation-for="DischargeDate" class="text-danger"></span>
+                </div>
+
+                <div class="py-2 col-12">
+                    <label for="DischargeNotes" class="ms-2 text-muted">Discharge Notes</label>
+                    <textarea id="DischargeNotes" name="DischargeNotes" class="form-control border-0 shadow"></textarea>
+                    <span asp-validation-for="DischargeNotes" class="text-danger"></span>
+                </div>
+                <div class="form-group py-2 col-12">
+                    <div class="form-check">
+                        <input type="hidden" name="IsDischarged" value="false" />
+                        <input class="form-check-input" type="checkbox" id="IsDischarged" name="IsDischarged" value="true" />
+                        <label class="form-check-label ms-2" for="IsDischarged">Is Discharged</label>
+                    </div>
+                    <span asp-validation-for="IsDischarged" class="text-danger"></span>
+                </div>
+
+
+                <div class="row pt-2">
+                    <div class="col-6 col-md-3">
+                        <button type="submit" class="btn btn-primary form-control">Create</button>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <a asp-controller="Admission" asp-action="Index" class="btn btn-outline-primary border form-control">
+                            Back to List
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'anchor autolink charmap codesample emoticons lists table visualblocks wordcount',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | align lineheight | numlist bullist indent outdent',
+        });
+    </script>
+    <partial name="_ValidationScriptsPartial" />
+}

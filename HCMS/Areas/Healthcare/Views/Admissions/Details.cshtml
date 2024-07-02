@@ -1,0 +1,86 @@
+﻿@model HCMS.Models.Admission
+@{
+    ViewBag.Title = "Admission Details";
+}
+
+<h2>Admission Details</h2>
+
+<div>
+    <h4>Admission</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient.FirstName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Patient.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdmissionDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AdmissionDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Department)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Department)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BedNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BedNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AttendingDoctor.FullName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AttendingDoctor.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReasonForAdmission)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ReasonForAdmission)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdmissionNotes)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AdmissionNotes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DischargeDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DischargeDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DischargeNotes)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DischargeNotes)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDischarged)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsDischarged)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AdmissionId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

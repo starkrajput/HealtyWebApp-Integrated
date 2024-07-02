@@ -1,0 +1,263 @@
+﻿Here's the complete code for the `Doctor` model, including the input fields for each attribute:
+
+```html
+@model HCMS.Models.Doctor
+
+@{
+    ViewBag.Title = "Create Doctor";
+}
+
+<h2>Create Doctor</h2>
+
+<form method="post" asp-action="Create">
+    <!-- Personal Identification Information -->
+    <div class="form-group">
+        <label asp-for="FirstName" class="control-label"></label>
+        <input asp-for="FirstName" class="form-control" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="LastName" class="control-label"></label>
+        <input asp-for="LastName" class="form-control" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="DateOfBirth" class="control-label"></label>
+        <input asp-for="DateOfBirth" type="date" class="form-control" />
+        <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Gender" class="control-label"></label>
+        <select asp-for="Gender" class="form-control">
+            <option value="">-- Select Gender --</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Non-binary">Non-binary</option>
+            <option value="Other">Other</option>
+        </select>
+        <span asp-validation-for="Gender" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="NationalIdentificationNumber" class="control-label"></label>
+        <input asp-for="NationalIdentificationNumber" class="form-control" />
+        <span asp-validation-for="NationalIdentificationNumber" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="HospitalIdentificationNumber" class="control-label"></label>
+        <input asp-for="HospitalIdentificationNumber" class="form-control" />
+        <span asp-validation-for="HospitalIdentificationNumber" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="MaritalStatus" class="control-label"></label>
+        <input asp-for="MaritalStatus" class="form-control" />
+        <span asp-validation-for="MaritalStatus" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Photograph" class="control-label"></label>
+        <input asp-for="Photograph" type="file" class="form-control" />
+        <span asp-validation-for="Photograph" class="text-danger"></span>
+    </div>
+    <!-- End of Personal Identification Information -->
+
+    <!-- Contact Information -->
+    <div class="form-group">
+        <label asp-for="HomeAddress" class="control-label"></label>
+        <input asp-for="HomeAddress" class="form-control" />
+        <span asp-validation-for="HomeAddress" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="HomePhone" class="control-label"></label>
+        <input asp-for="HomePhone" class="form-control" />
+        <span asp-validation-for="HomePhone" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="MobilePhone" class="control-label"></label>
+        <input asp-for="MobilePhone" class="form-control" />
+        <span asp-validation-for="MobilePhone" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="WorkPhone" class="control-label"></label>
+        <input asp-for="WorkPhone" class="form-control" />
+        <span asp-validation-for="WorkPhone" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Email" class="control-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <!-- End of Contact Information -->
+
+    <!-- Emergency Contact -->
+    <div class="form-group">
+        <label asp-for="EmergencyContactName" class="control-label"></label>
+        <input asp-for="EmergencyContactName" class="form-control" />
+        <span asp-validation-for="EmergencyContactName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="EmergencyContactRelation" class="control-label"></label>
+        <input asp-for="EmergencyContactRelation" class="form-control" />
+        <span asp-validation-for="EmergencyContactRelation" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="EmergencyContactPhone" class="control-label"></label>
+        <input asp-for="EmergencyContactPhone" class="form-control" />
+        <span asp-validation-for="EmergencyContactPhone" class="text-danger"></span>
+    </div>
+    <!-- End of Emergency Contact -->
+
+    <!-- Professional Information -->
+    <div class="form-group">
+        <label asp-for="Specialization" class="control-label"></label>
+        <input asp-for="Specialization" class="form-control" />
+        <span asp-validation-for="Specialization" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="MedicalLicenseNumber" class="control-label"></label>
+        <input asp-for="MedicalLicenseNumber" class="form-control" />
+        <span asp-validation-for="MedicalLicenseNumber" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="LicenseState" class="control-label"></label>
+        <input asp-for="LicenseState" class="form-control" />
+        <span asp-validation-for="LicenseState" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="MedicalSchool" class="control-label"></label>
+        <input asp-for="MedicalSchool" class="form-control" />
+        <span asp-validation-for="MedicalSchool" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ResidencyProgram" class="control-label"></label>
+        <input asp-for="ResidencyProgram" class="form-control" />
+        <span asp-validation-for="ResidencyProgram" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="FellowshipProgram" class="control-label"></label>
+        ```html
+        <input asp-for="FellowshipProgram" class="form-control" />
+        <span asp-validation-for="FellowshipProgram" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="BoardCertifications" class="control-label"></label>
+        <input asp-for="BoardCertifications" class="form-control" />
+        <span asp-validation-for="BoardCertifications" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="YearsOfExperience" class="control-label"></label>
+        <input asp-for="YearsOfExperience" type="number" class="form-control" />
+        <span asp-validation-for="YearsOfExperience" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="HospitalAffiliation" class="control-label"></label>
+        <input asp-for="HospitalAffiliation" class="form-control" />
+        <span asp-validation-for="HospitalAffiliation" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Department" class="control-label"></label>
+        <input asp-for="Department" class="form-control" />
+        <span asp-validation-for="Department" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="OfficeRoomNumber" class="control-label"></label>
+        <input asp-for="OfficeRoomNumber" class="form-control" />
+        <span asp-validation-for="OfficeRoomNumber" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ProfessionalMemberships" class="control-label"></label>
+        <input asp-for="ProfessionalMemberships" class="form-control" />
+        <span asp-validation-for="ProfessionalMemberships" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ResearchInterests" class="control-label"></label>
+        <input asp-for="ResearchInterests" class="form-control" />
+        <span asp-validation-for="ResearchInterests" class="text-danger"></span>
+    </div>
+    <!-- End of Professional Information -->
+    <!-- Clinical Information -->
+    <div class="form-group">
+        <label asp-for="PatientLoad" class="control-label"></label>
+        <input asp-for="PatientLoad" type="number" class="form-control" />
+        <span asp-validation-for="PatientLoad" class="text-danger"></span>
+    </div>
+    <!-- You can add input fields for the list properties here -->
+    <!-- End of Clinical Information -->
+    <!-- Administrative Information -->
+    <div class="form-group">
+        <label asp-for="EmploymentStatus" class="control-label"></label>
+        <input asp-for="EmploymentStatus" class="form-control" />
+        <span asp-validation-for="EmploymentStatus" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ShiftSchedule" class="control-label"></label>
+        <input asp-for="ShiftSchedule" class="form-control" />
+        <span asp-validation-for="ShiftSchedule" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="VacationSchedule" class="control-label"></label>
+        <input asp-for="VacationSchedule" class="form-control" />
+        <span asp-validation-for="VacationSchedule" class="text-danger"></span>
+    </div>
+    <!-- End of Administrative Information -->
+    <!-- Insurance Information -->
+    <div class="form-group">
+        <label asp-for="MalpracticeInsuranceProvider" class="control-label"></label>
+        <input asp-for="MalpracticeInsuranceProvider" class="form-control" />
+        <span asp-validation-for="MalpracticeInsuranceProvider" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="MalpracticeInsurancePolicyNumber" class="control-label"></label>
+        <input asp-for="MalpracticeInsurancePolicyNumber" class="form-control" />
+        <span asp-validation-for="MalpracticeInsurancePolicyNumber" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="InsuranceCoverageDetails" class="control-label"></label>
+        <textarea asp-for="InsuranceCoverageDetails" class="form-control"></textarea>
+        <span asp-validation-for="InsuranceCoverageDetails" class="text-danger"></span>
+    </div>
+    <!-- End of Insurance Information -->
+    <!-- Educational Information -->
+    <!-- You can add input fields for ContinuingMedicalEducation and AdditionalCertifications here -->
+    <!-- End of Educational Information -->
+    <!-- Behavioral Health Information -->
+    <!-- You can add input fields for MentalHealthAssessments and WorkplaceStress here -->
+    <!-- End of Behavioral Health Information -->
+    <!-- Genomic Information -->
+    <!-- You can add input fields for GeneticTestingResults and PersonalizedMedicine here -->
+    <!-- End of Genomic Information -->
+    <!-- Lifestyle Information -->
+    <div class="form-group">
+        <label asp-for="DietaryHabits" class="control-label"></label>
+        <textarea asp-for="DietaryHabits" class="form-control"></textarea>
+        <span asp-validation-for="DietaryHabits" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="ExerciseAndPhysicalActivity" class="control-label"></label>
+        <textarea asp-for="ExerciseAndPhysicalActivity" class="form-control"></textarea>
+        <span asp-validation-for="ExerciseAndPhysicalActivity" class="text-danger"></span>
+    </div>
+    <!-- End of Lifestyle Information -->
+    <!-- Preferences and Interests -->
+    <div class="form-group">
+        <label asp-for="CommunicationPreferences" class="control-label"></label>
+        <textarea asp-for="CommunicationPreferences" class="form-control"></textarea>
+        <span asp-validation-for="CommunicationPreferences" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="CulturalPreferences" class="control-label"></label>
+        <textarea asp-for="CulturalPreferences" class="form-control"></textarea>
+        <span asp-validation-for="CulturalPreferences" class="text-danger"></span>
+    </div>
+    <!-- End of Preferences and Interests -->
+    <!-- Technology and Equipment Proficiency -->
+    <!-- You can add input fields for MedicalDevices and SoftwareSystems here -->
+    <!-- End of Technology and Equipment Proficiency -->
+    <!-- Awards and Recognitions -->
+    <!-- You can add input fields for ProfessionalAwards and Publications here -->
+    <!-- End of Awards and Recognitions -->
+    <!-- Volunteer and Community Work -->
+    <!-- You can add input fields for CommunityService and GlobalHealthInitiatives here -->
+    <!-- End of Volunteer and Community Work -->
+
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+

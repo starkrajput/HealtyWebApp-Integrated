@@ -1,0 +1,1264 @@
+﻿@{
+    ViewData["Title"] = "RSV";
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    @* <a href="@Url.Action(" AddMailAccount", "Home" )" class="btn btn-primary">Add Mail Account</a> *@
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </head>
+    <header>
+        <style>
+            /* Custom CSS */
+            .overlay {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                height: calc(100% - 70px);
+                background: rgba(0, 0, 0, 0.8);
+                z-index: 999;
+                overflow-y: auto;
+                transition: transform 0.3s;
+            }
+
+            .overlay-content {
+                max-width: 1200px;
+                margin: 20px auto;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+
+            .overlay-item {
+                width: 100%;
+                padding: 10px;
+                text-align: center;
+                color: white;
+            }
+
+            @@media (min-width: 768px) {
+                .overlay-item {
+                    width: calc(33.33% - 20px);
+                }
+            }
+            /* CSS for sliding menu */
+            .slide-menu {
+                position: fixed;
+                top: 120px;
+                right: -300px; /* Initially hidden outside the viewport */
+                width: 250px;
+                font-size: 20px;
+                color: white;
+                height: 100%;
+                padding: 20px;
+                transition: right 0.3s ease-in-out;
+                <!-- background: #fff; -->
+                <!-- box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); -->
+            }
+
+                /* Additional styles for the slide-in menu items */
+                .slide-menu ul {
+                    list-style: none;
+                    padding: 0;
+                }
+
+                    .slide-menu ul li {
+                        margin-bottom: 10px;
+                        position: relative;
+                        cursor: pointer;
+                        transition: color 0.3s, text-decoration 0.3s;
+                    }
+
+                        .slide-menu ul li:hover {
+                            color: #007bff; /* Change text color on hover */
+                        }
+
+                        .slide-menu ul li::before {
+                            content: '';
+                            position: absolute;
+                            width: 100%;
+                            height: 2px;
+                            background-color: #007bff; /* Underscore color */
+                            bottom: 0;
+                            left: 0;
+                            transform: scaleX(0); /* Initially hidden */
+                            transform-origin: right;
+                            transition: transform 0.3s;
+                        }
+
+                        .slide-menu ul li:hover::before {
+                            transform: scaleX(1); /* Show the underscore on hover */
+                            transform-origin: left;
+                        }
+
+            .navbar-custom {
+                transition: top 0.3s;
+            }
+
+            .overlay {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                height: calc(100% - 70px);
+                background: rgba(0, 0, 0, 0.9);
+                z-index: 999;
+                overflow-y: auto;
+            }
+
+            .overlay-content {
+                max-width: 1200px;
+                margin: 20px auto;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+
+            .overlay-item {
+                width: 100%;
+                padding: 10px;
+                text-align: center;
+                color: white;
+            }
+
+            @@media (min-width: 768px) {
+                .overlay-item {
+                    width: calc(33.33% - 20px);
+                }
+            }
+
+            .rounded-bottom {
+                background: white;
+                padding: 20px 0;
+            }
+            /* CSS for the fixed and transitioning navbar */
+            .navbar-custom {
+                transition: top 0.3s;
+                position: fixed;
+                top: 0;
+                width: 100%;
+            }
+        </style>
+        <header>
+            <!--   NavBar-->
+            <!-- Button to Open Overlay -->
+            <!-- Button to Open Overlay -->
+            <!-- Transparent Overlay -->
+            <div class="overlay" id="overlay">
+                <div class="overlay-content">
+                    <a href="/login/" class="overlay-item h1">Login</a>
+                    <div class="overlay-item h1">Services</div>
+                    <div class="overlay-item h1">Expertise</div>
+                    <div class="overlay-item h1">Careers</div>
+                    <div class="overlay-item">Development Services</div>
+                    <div class="overlay-item">DevOps</div>
+                    <div class="overlay-item h1">India Training</div>
+                    <div class="overlay-item">Product Support Services</div>
+                    <div class="overlay-item">Artificial Intelligence and Data Science</div>
+                    <div class="overlay-item">                     </div>
+                    <div class="overlay-item">IT Support</div>
+                    <div class="overlay-item">Salesforce</div>
+                    <div class="overlay-item">                     </div>
+                    <div class="overlay-item">QA and Testing Services</div>
+                    <div class="overlay-item">                     </div>
+                    <div class="overlay-item">                     </div>
+                    <div class="overlay-item">Professional Services</div>
+                    <div class="overlay-item h1">About Us</div>
+
+                    <div class="overlay-item">                     </div>
+                    <div class="overlay-item">                     </div>
+                    <div class="overlay-item">About bebo</div>
+                    <div class="overlay-item">                     </div>
+                    <div class="overlay-item">                     </div>
+                    <div class="overlay-item">Our Approach</div>
+                    <div class="overlay-item">                     </div>
+                    <div class="overlay-item">                     </div>
+                    <div class="overlay-item">Our Values and Culture</div>
+                    <div class="overlay-item">                     </div>
+                    <div class="row col-md-6 " style="margin-left:300px;margin-top:50px;">
+
+                        <div class="overlay-item">Contact Us</div>
+                        <div class="overlay-item">Privacy Policy</div>
+                        <div class="overlay-item">Terms and Conditions</div>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="navbar navbar-expand-lg bg-body-tertiary navbar-custom" style="position: fixed; top: 0; width: 100%;z-index:999;">
+                <div class="container-fluid px-5 mx-5 d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center">
+                    <img style="width: 55px; height: 70px;" src="@Url.Content("~/images/homepic/pics2.jpg")" />
+                    <a class="navbar-brand" href="#">  |  RSV Technologies </a>
+                    </div>
+                </div>
+                <button id="overlay-button" class="btn btn-primary" style="position: absolute; top: 15px; right: 15px;">Features</button>
+            </nav>
+
+
+
+            <script>
+    // JavaScript to toggle the overlay
+    const overlay = document.getElementById('overlay');
+    const overlayButton = document.getElementById('overlay-button');
+
+    window.addEventListener('scroll', () => {
+        const st = window.pageYOffset || document.documentElement.scrollTop;
+        const navbar = document.querySelector('.navbar-custom');
+        if (st > 70) {
+            // User has scrolled down, hide the navbar
+            navbar.style.top = '-70px';
+        } else {
+            // User is scrolling up, show the navbar
+            navbar.style.top = '0';
+        }
+    });
+
+    overlayButton.addEventListener('click', () => {
+        overlay.style.display = overlay.style.display === 'none' ? 'block' : 'none';
+    });
+            </script>
+
+
+            <!--    Navbar ends here. -->
+            <!--Below Navbar Section ~Introductory !-->
+            <div class="container-fluid img-fluid" style="border-bottom-left-radius: 50% 60px;color:white;
+      border-bottom-right-radius: 60% 40px;min-height:740px;background:url('@Url.Content("~/images/homepic/pics.jpg")'); background-size:cover;  ">
+                <div class="row justify-content-start" style="padding-top:100px;padding-left:120px;">
+                    <div class="col-12 col-md-9 mt-4 p-4" style="font-size:20px;">
+                        <h5>We are HIRING!</h5>
+                        <h1>
+                            Join a Team With an outstanding.
+                            <br>
+                            Net Promoter score (NPS) of
+                            <strong class="nps-score">74</strong>
+                        </h1>
+                        <p class="col-md-7">
+                            We are always happy to connect with talented people. We believe that with the right people in place, teams can dream, create, design, and build meaningful relationships with clients and add value to their projects.
+                        </p>
+                        <div class="d-flex">
+                            <button type="button" class="btn btn-primary mr-3" style="width:200px;height:50px;">INDIA</button>
+                            <button type="button" class="btn btn-secondary" style="width:200px;height:50px;margin-left:10px;">OUTSIDE INDIA</button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-3 mt-4 d-none d-md-block" style="padding-left:190px;padding-top:300px;">
+                        <!-- These social media icons will be hidden on screens smaller than MD (medium) -->
+                        <ul class="list-unstyled">
+                            <li class="mb-2">
+                                <img class="w-25 h-25 p-1" src="https://cdn-icons-png.flaticon.com/128/4494/4494497.png" alt="Icon 1">
+                            </li>
+                            <li class="mb-2">
+                                <img class="w-25 h-25 p-1" src="https://cdn-icons-png.flaticon.com/128/2111/2111463.png" alt="Icon 2">
+                            </li>
+                            <li class="mb-2">
+                                <img class="w-25 h-25 p-1" src="https://cdn-icons-png.flaticon.com/128/733/733547.png" alt="Icon 3">
+                            </li>
+                            <li class="mb-2">
+                                <img class="w-25 h-25 p-1" src="https://cdn-icons-png.flaticon.com/128/4494/4494477.png" alt="Icon 4">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide-menu" id="top-menu">
+                <ul>
+                <li>  <a href="@Url.Action("Compose", "Home" )" style="color:white;" >Bulk Email Sender</a> </li>
+                    <li>Services</li>
+                    <li>Expertise</li>
+                    <li>Careers</li>
+                    <li>About Us</li>
+                    <li>India Training</li>
+                </ul>
+            </div>
+
+            <script>
+  // Function to handle the menu display based on scroll position
+  function handleMenuDisplay() {
+    const menu = document.getElementById('top-menu');
+    if (window.scrollY > 0) {
+      menu.style.right = '-300px'; // Hide the menu
+    } else {
+      menu.style.right = '0'; // Show the menu
+    }
+  }
+
+  // Function to handle the menu display based on window width
+  function handleWindowResize() {
+    const menu = document.getElementById('top-menu');
+    if (window.innerWidth < 768) {
+      menu.style.left = '-300px'; // Hide the menu on small screens
+    } else {
+      handleMenuDisplay(); // Show/hide based on scroll position
+    }
+  }
+
+  // Add event listeners for scrolling and window resize
+  window.addEventListener('scroll', handleMenuDisplay);
+  window.addEventListener('resize', handleWindowResize);
+
+  // Initial check to display/hide the menu based on the initial scroll position and window width
+  handleMenuDisplay();
+  handleWindowResize();
+
+  let lastScrollTops = 0;
+  const navbar = document.querySelector('.navbar-custom');
+  window.addEventListener('scroll', () => {
+    const st = window.pageYOffset || document.documentElement.scrollTop;
+    if (st > lastScrollTops) {
+      navbar.style.top = '-70px';
+    } else {
+      navbar.style.top = '0';
+    }
+    lastScrollTops = st;
+  });
+            </script>
+        </header>
+        <!--    Swipped Menu Ends here  -->
+        <!-- Introductory Banner Ends here ---------------------------------------------------------------------------------------------------------------><body>
+
+
+            <!--Body Section starts from here  PART 1-->
+
+            <div class="container">
+                <div class="row" style="margin-top:70px;">
+                    <div class="col-12 col-md-6">
+                        <div class="rounded p-3 " style="font-size:18px;">
+                            <h1><span>Our <b>Services</b></span></h1>
+                            <br>
+                            <p>Software Product Engineering Methodologies</p>
+                            <p style="font-weight:bold;font-size:20px;">bebo Technologies provides teams of dedicated and experienced software engineers who know how to satisfy client testing requirements with efficient management skills and software engineering methodologies.</p>
+                            <p>bebo Technologies has grown 20% - 50% per year since its founding, completing hundreds of successful engagements for clients such as Adobe, IBM, Oracle, Cisco, Prudential, Mass Mutual, Luxottica, Ford, and a host of startup companies in Silicon Valley.</p>
+                            <button type="button" class="btn btn-success" style="width:200px;height:50px;margin-left:10px;">DISCOVER NOW</button>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="border rounded p-3 shadow mb-3">
+                            <div class="row">
+                                <div class="col-4">
+                                    <img style="width:100px;height:100px;" src="https://cdn-icons-png.flaticon.com/512/8738/8738896.png" alt="Ideation Icon">
+                                </div>
+                                <div class="col-8">
+                                    <h5>Ideation</h5>
+                                    <p>Our engineering teams, where everyone is a leader, help you create groundbreaking solutions.</p>
+                                </div>
+                            </div>
+                            <hr style="border: none; height: 1px; background-color: #87CEEB;">
+
+                            <div class="row">
+                                <div class="col-4">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/1589/1589661.png" style="width:100px;height:100px;" alt="Market Research Icon">
+                                </div>
+                                <div class="col-8">
+                                    <h5>Market Research</h5>
+                                    <p>We go beyond the industry standards to find and seize opportunities. We grow when our clients grow.</p>
+                                </div>
+                            </div>
+                            <hr style="border: none; height: 1px; background-color:#87CEEB;">
+
+                            <div class="row">
+                                <div class="col-4">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/868/868682.png" style="width:100px;height:100px;" alt="Technology & Tools Icon">
+                                </div>
+                                <div class="col-8">
+                                    <h5>Technology & Tools</h5>
+                                    <p>We help clients invest in the right tools that help them cut out the noise and get the job done.</p>
+                                </div>
+                            </div>
+                            <hr style="border: none; height: 1px; background-color:#87CEEB;">
+
+                            <div class="row">
+                                <div class="col-4">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/2762/2762427.png" style="width:100px;height:100px;" alt="Success Icon">
+                                </div>
+                                <div class="col-8">
+                                    <h5>Success</h5>
+                                    <p>We take pride in our 21+ years of client success. We supply our clients with up-to-date and actionable results so they can focus on what really matters: growing their business.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--PART 1 ENDS Here-->
+            <!--PART 2 STARTS HERE -->
+            </style>
+            <div class="container">
+                <br>
+                <br>
+                <div class="text-center">
+                    <h2>Values & <b>Culture</b></h2>
+                    <p style="padding: 6px; font-size: 20px;">
+                        Our team is our greatest asset. We consistently invest in and around our team members to make sure they are set up for success and share bebo Technologies' dedication to excellence.
+                    </p>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-12 col-md-4" style="padding-right:3px;">
+                        <div class="row align-items-center" style="padding-bottom:8px;">
+                            <div class="col-3">
+                                <img src="https://cdn-icons-png.flaticon.com/512/1589/1589661.png" style="width: 50px; height: 50px; margin-left: 40px;" alt="CSR">
+                            </div>
+                            <div class="col-9">
+                                <h5>CSR</h5>
+                            </div>
+                        </div>
+                        <div class="row align-items-center" style="padding-bottom:8px;">
+                            <div class="col-3">
+                                <img src="https://cdn-icons-png.flaticon.com/512/1589/1589661.png" style="width: 50px; height: 50px; margin-left: 40px;" alt="Awards">
+                            </div>
+                            <div class="col-9">
+                                <h5>Awards</h5>
+                            </div>
+                        </div>
+                        <div class="row align-items-center" style="padding-bottom:8px;">
+                            <div class="col-3">
+                                <img src="https://cdn-icons-png.flaticon.com/512/1589/1589661.png" style="width: 50px; height: 50px; margin-left: 40px;" alt="Events">
+                            </div>
+                            <div class="col-9">
+                                <h5>Events</h5>
+                            </div>
+                        </div>
+                        <div class="row align-items-center" style="padding-bottom:8px;">
+                            <div class="col-3">
+                                <img src="https://cdn-icons-png.flaticon.com/512/1589/1589661.png" style="width: 50px; height: 50px; margin-left: 40px;" alt="Work-Life Balance">
+                            </div>
+                            <div class="col-9">
+                                <h5>Work-Life Balance</h5>
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-3">
+                                <img src="https://cdn-icons-png.flaticon.com/512/1589/1589661.png" style="width: 50px; height: 50px; margin-left: 40px;" alt="Recognition">
+                            </div>
+                            <div class="col-9">
+                                <h5>Recognition</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-8">
+                        <div class="row">
+                            <div class="col-3 col-md-3">
+                                <img style="width: 100%; height:300px;" src="https://img.freepik.com/free-photo/view-ferocious-wild-tiger-cub-nature_23-2150748116.jpg">
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <img style="width: 100%; height:300px;" src="https://img.freepik.com/free-photo/view-ferocious-wild-tiger-cub-nature_23-2150748116.jpg">
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <img style="width: 100%; height:300px;" src="https://img.freepik.com/free-photo/view-ferocious-wild-tiger-cub-nature_23-2150748116.jpg">
+                            </div>
+                            <div class="col-3 col-md-3">
+                                <img style="width: 100%; height:300px;" src="https://img.freepik.com/free-photo/view-ferocious-wild-tiger-cub-nature_23-2150748116.jpg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- PART 2 ENDS HERE -->
+            <br>
+            <br>
+            <br>
+            <!--PART 3 STARTS HERE -->
+
+            <div class="container">
+                <div class="d-flex mx-7 ">
+                    <div class="col-md-7" style="font-size:17px;margin-right:30px;">
+                        <br>
+                        <br>
+                        <br>
+                        <h1><span><b>Expertise</b></span></h1>
+                        <p>
+                            Our mission is to provide organizations with comprehensive outsourced quality assurance solutions. Our goal is
+                            to optimize our clients' software development lifecycle while meeting all of their QA and testing objectives
+                            and schedules.
+                        </p>
+                        <ul class="nav nav-tabs" id="expertiseTabs" role="tablist" style="font-size:20px;">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="domain-tab" data-toggle="tab" href="#domain" role="tab"
+                                   aria-controls="domain" aria-selected="true" onclick="showImages('domain')">Domain Expertise</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="tools-tab" data-toggle="tab" href="#tools" role="tab"
+                                   aria-controls="tools" aria-selected="false" onclick="showImages('tools')">Tools Expertise</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="technology-tab" data-toggle="tab" href="#technology" role="tab"
+                                   aria-controls="technology" aria-selected="false" onclick="showImages('technology')">Technologies Expertise</a>
+                            </li>
+                        </ul>
+                        <br>
+                        <div class="tab-content" id="expertiseTabsContent">
+                            <div class="tab-pane fade show active" id="domain" role="tabpanel" aria-labelledby="domain-tab">
+                                <p>
+                                    We have experience in web, SaaS, client server, desktop, mobile, and back-office domains. Our
+                                    experienced engineers in these domains focus on the critical areas of your application to develop
+                                    and support according to your needs.
+                                </p>
+                            </div>
+                            <div class="tab-pane fade" id="tools" role="tabpanel" aria-labelledby="tools-tab">
+                                <p>
+                                    No matter what programming language or technologies you use, our engineers have the expertise and
+                                    the relevant tools to handle your development and support needs.
+                                </p>
+                            </div>
+                            <div class="tab-pane fade" id="technology" role="tabpanel" aria-labelledby="technology-tab">
+                                <p>
+                                    Our staff of engineers is experienced in all the latest technologies. We have expertise in all
+                                    modern programming languages and database structures. We will make sure your application is ready
+                                    to run on the servers and operating systems that are essential to you.
+                                </p>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-success" style="width: 200px; height: 50px; margin-left: 10px;">
+                            DISCOVER
+                            NOW
+                        </button>
+                    </div>
+                    <div class="col-md-5">
+                        <style>
+                            .image-gallery {
+                                display: flex;
+                                overflow: hidden;
+                            }
+
+                            .image-column {
+                                display: flex;
+                                flex-direction: row;
+                                animation: rotateGallery 10s linear infinite;
+                            }
+
+                            .image-wrapper {
+                                margin: 10px;
+                            }
+
+                            @@keyframes rotateGallery {
+                                0% {
+                                    transform: translateY(0);
+                                }
+
+                                50% {
+                                    transform: translateY(-100%);
+                                }
+
+                                100% {
+                                    transform: translateY(0);
+                                }
+                            }
+                        </style>
+                        <div class="image-gallery" style="height:500px;width:510px;">
+                            <div class="image-column tab-domain">
+                                <div class="image-wrapper">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+
+                                </div>
+                                <div class="image-wrapper">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 2">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+
+                                </div>
+
+                            </div>
+                            <div class="image-column tab-tools">
+                                <div class="image-wrapper">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 4">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+
+                                </div>
+                                <div class="image-wrapper">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 5">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+
+                                </div>
+
+
+                            </div>
+                            <div class="image-column tab-technology">
+                                <div class="image-wrapper">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 7">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+
+                                </div>
+                                <div class="image-wrapper">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 8">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/6009/6009864.png" style="width:250px;" alt="Image 1">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+        function showImages(category) {
+            const imageColumns = document.querySelectorAll('.image-column');
+            imageColumns.forEach((column) => {
+                column.style.display = 'none';
+            });
+            const selectedImages = document.querySelectorAll(`.tab-${category}`);
+            selectedImages.forEach((imageColumn) => {
+                imageColumn.style.display = 'flex';
+            });
+        }
+            </script>
+            <!--PART 3 ENDS HERE -->
+
+            <br>
+            <br>
+            <!--PART 4 STARTS HERE -->
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+                <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            </head>
+            <body>
+                <div class="container">
+                    <h2 class="text-center">Testimonials</h2>
+                    <p class="text-center" style="font-size: 18px;">When we say we’re all about our people, we really mean it. The idea of "taking care of people" both our employees and our clients has been built into the way we do business.</p>
+                </div>
+                <div style="background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);min-height:300px;">
+                    <div class="container" style="color:white;">
+                        <div id="userCarousel" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active" style="margin-top:60px;">
+                                    <div class="d-md-flex">
+                                        <img src="https://cdn-icons-png.flaticon.com/128/4140/4140037.png" alt="User 1" class="img-fluid" style="max-width: 200px;min-height:200px;border-radius: 50%;">
+                                        <div>
+
+                                            <p style="font-size: 18px;padding-left:70px">
+                                                I am associated with bebo Technologies for over the years and have enjoyed and appreciated the company's priorities, insight, and culture. They care about their customers, employees, and work considerably and competently to succeed. I believe every team, every customer, and every employee will affirm this. bebo Technologies is an exceptional company.
+                                            </p>
+                                            <p style="font-size: 32px;padding-left:70px;">Ayush Raj</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item " style="margin-top:60px;">
+                                    <div class="d-md-flex">
+                                        <img src="https://cdn-icons-png.flaticon.com/128/4140/4140037.png" alt="User 1" class="img-fluid" style="max-width: 200px;min-height:200px;border-radius: 50%;">
+                                        <div>
+                                            <p style="font-size: 18px;padding-left:70px">
+                                                I am associated with bebo Technologies for over the years and have enjoyed and appreciated the company's priorities, insight, and culture. They care about their customers, employees, and work considerably and competently to succeed. I believe every team, every customer, and every employee will affirm this. bebo Technologies is an exceptional company.
+                                            </p>
+                                            <p style="font-size: 32px;padding-left:700px;">Ayush Raj</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item " style="margin-top:60px;">
+                                    <div class="d-md-flex">
+                                        <img src="https://cdn-icons-png.flaticon.com/128/4140/4140037.png" alt="User 1" class="img-fluid" style="max-width: 200px;min-height:200px;border-radius: 50%;">
+                                        <div>
+                                            <p style="font-size: 18px;padding-left:70px">
+                                                I am associated with bebo Technologies for over the years and have enjoyed and appreciated the company's priorities, insight, and culture. They care about their customers, employees, and work considerably and competently to succeed. I believe every team, every customer, and every employee will affirm this. bebo Technologies is an exceptional company.
+                                            </p>
+                                            <p style="font-size: 32px;padding-left:700px;">Ayush Raj</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item " style="margin-top:60px;">
+                                    <div class="d-md-flex">
+                                        <img src="https://cdn-icons-png.flaticon.com/128/4140/4140037.png" alt="User 1" class="img-fluid" style="max-width: 200px;min-height:200px;border-radius: 50%;">
+                                        <div>
+                                            <p style="font-size: 18px;padding-left:70px">
+                                                I am associated with bebo Technologies for over the years and have enjoyed and appreciated the company's priorities, insight, and culture. They care about their customers, employees, and work considerably and competently to succeed. I believe every team, every customer, and every employee will affirm this. bebo Technologies is an exceptional company.
+                                            </p>
+                                            <p style="font-size: 32px;padding-left:700px;">Ayush Raj</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item " style="margin-top:60px;">
+                                    <div class="d-md-flex">
+                                        <img src="https://cdn-icons-png.flaticon.com/128/4140/4140037.png" alt="User 1" class="img-fluid" style="max-width: 200px;min-height:200px;border-radius: 50%;">
+                                        <div>
+
+                                            <p style="font-size: 18px;padding-left:70px">
+                                                I am associated with bebo Technologies for over the years and have enjoyed and appreciated the company's priorities, insight, and culture. They care about their customers, employees, and work considerably and competently to succeed. I believe every team, every customer, and every employee will affirm this. bebo Technologies is an exceptional company.
+                                            </p>
+                                            <p style="font-size: 32px;padding-left:700px;">Ayush Raj</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="carousel-item " style="margin-top:60px;">
+                                    <div class="d-md-flex">
+                                        <img src="https://cdn-icons-png.flaticon.com/128/4140/4140037.png" alt="User 1" class="img-fluid" style="max-width: 200px;min-height:200px;border-radius: 50%;">
+                                        <div>
+                                            <p style="font-size: 18px;padding-left:70px">
+                                                I am associated with bebo Technologies for over the years and have enjoyed and appreciated the company's priorities, insight, and culture. They care about their customers, employees, and work considerably and competently to succeed. I believe every team, every customer, and every employee will affirm this. bebo Technologies is an exceptional company.
+                                            </p>
+                                            <p class="text-center" style="font-size: 32px;padding-left:700px;">Ayush Raj</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Add more carousel items as needed -->
+                            </div>
+                            <a class="carousel-control-prev" href="#userCarousel" role="button" data-slide="prev" style="padding-right:160px;">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#userCarousel" role="button" data-slide="next" style="padding-left:160px;">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+    $(document).ready(function () {
+        $('#userCarousel').carousel({
+            interval: 3000 // Change slide every 3 seconds
+        });
+    });
+                </script>
+            </body>
+        </html>
+
+        <!--PARTS 4 ENDS HERE -->
+        <!--PART 5 START HERE -->
+
+
+        <style>
+            .custom-div {
+                background-image: url('https://media.istockphoto.com/id/1402430797/photo/business-3d-tablet-virtual-growth-arrow-financial-graph-on-digital-technology-strategy.jpg?s=2048x2048&w=is&k=20&c=U5b3qP4JE9VeWabOsbDvX2yQDE4qV2wzUaL4ApzPI-k=');
+                background-size: cover;
+                background-position: center;
+                width: 100%;
+                padding: 100px; /* Add your desired padding */
+                text-align: center;
+                height: 140vh;
+            }
+        </style>
+
+        <div class="container-fluid custom-div" style="color:white;">
+            <div class="container-fluid">
+                <div class="d-flex" style="height:400px;">
+                    <div class="col-5 col-md-5 text-left">
+                        <h2>bebo's Awesome Story</h2>
+                        <p>Over the last 21 years bebo Technologies has grown from a small team in remote offices to an international team with state of the art facilities in Mexico and India. While our team has grown exponentially over the years, our mission to support our employees, clients and communities has stayed the same. Check out how our team and facilities have grown over the years below.</p>
+                        <div class="row">
+
+                            <div class="col-3 col-md-4 image-transition" style="padding-top:100px;">
+                                <div class="container">
+                                    <h3>2008</h3>
+                                    <img src="https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?size=626&ext=jpg&ga=GA1.1.977812541.1698298868&semt=ais" style="border-radius: 50%;width:70px;height:70px;">
+                                    <p> How We Started</p>
+                                </div>
+                            </div>
+                            <div class="col-3 image-transition " style="padding-top:20px;padding-left:150px;">
+                                <div class="container">
+                                    <h3>2012</h3>
+                                    <img src="https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?size=626&ext=jpg&ga=GA1.1.977812541.1698298868&semt=ais" style="border-radius: 50%;width:70px;height:70px;">
+                                    <p> Our Institute</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-5 col-md-7">
+                        <div class="row">
+                            <div class="col-3 image-transition" style="padding-top:115px;padding-left:50px;">
+                                <div class="container">
+                                    <h3>2008</h3>
+                                    <img src="https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?size=626&ext=jpg&ga=GA1.1.977812541.1698298868&semt=ais" style="border-radius: 50%;width:70px;height:70px;">
+                                    <p> Rise with New Building</p>
+                                </div>
+                            </div>
+                            <div class="col-3 image-transition" style="padding-top:60px;padding-left:50px;">
+                                <div class="container">
+                                    <h3>2012</h3>
+                                    <img src="https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?size=626&ext=jpg&ga=GA1.1.977812541.1698298868&semt=ais" style="border-radius: 50%;width:70px;height:70px;">
+                                    <p> Talent Hunter</p>
+                                </div>
+                            </div>
+                            <div class="col-3 image-transition">
+                                <div class="container">
+                                    <!--                                <h3>2022</h3>-->
+                                    <!--                                <img src="https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?size=626&ext=jpg&ga=GA1.1.977812541.1698298868&semt=ais" style="border-radius: 50%;width:70px;height:70px;">-->
+                                    <!--                                <p> How We Started</p>-->
+                                </div>
+                            </div>
+                            <div class="col-3 image-transition" style="padding-bottom:230px;">
+                                <div class="container">
+                                    <h3>2022</h3>
+                                    <img src="https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?size=626&ext=jpg&ga=GA1.1.977812541.1698298868&semt=ais" style="border-radius: 50%;width:70px;height:70px;">
+                                    <p> Still Growing</p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div class="d-flex">
+                    <div class="col-3 col-md-4">
+                        <img style="padding-top:50px;width:490px;height:360px;" src="https://img.freepik.com/premium-vector/world-map-planet-earth-global-business-connection_115739-630.jpg">
+                    </div>
+                    <div class="col-2 col-md-2"></div>
+                    <div class="col-6 col-md-7" style="padding-top:200px;">
+                        <style>
+                            .counter-container {
+                                display: flex;
+                                justify-content: space-around;
+                                padding: 20px;
+                            }
+
+                            .counter-box {
+                                text-align: center;
+                            }
+
+                            .count {
+                                font-size: 46px;
+                                font-weight: bold;
+                                color: white;
+                            }
+
+                            .label {
+                                font-size: 28px;
+                                color: white;
+                            }
+
+                            @@keyframes count {
+                                from {
+                                    transform: scale(1);
+                                }
+
+                                to {
+                                    transform: scale(1.5);
+                                }
+                            }
+
+                            .count-animated {
+                                animation: count 1s ease-in-out;
+                            }
+
+                            .image-transition {
+                                opacity: 0;
+                                transform: translateX(-20px) scale(0.2);
+                                transition: opacity 1s, transform 1s;
+                            }
+
+                                .image-transition.show {
+                                    opacity: 1;
+                                    transform: translateX(0) scale(1);
+                                }
+                        </style>
+                        
+                        
+                            <div class="container">
+                                <div class="counter-container">
+                                    <div class="counter-box">
+                                        <span class="count count-animated" data-target="21">0</span>
+                                        <p class="label">Years of Legacy</p>
+                                    </div>
+                                    <div class="counter-box">
+                                        <span class="count count-animated" data-target="1400">0</span>
+                                        <p class="label">Employees</p>
+                                    </div>
+                                    <div class="counter-box">
+                                        <span class="count count-animated" data-target="1000">0</span>
+                                        <p class="label">Projects Delivered</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <script>
+         const imageDivs = document.querySelectorAll('.image-transition');
+        imageDivs.forEach((div, index) => {
+            setTimeout(() => {
+                div.classList.add('show');
+            }, 1000 * (index + 1));
+        });
+                            </script>
+                            <script>
+        const counters = document.querySelectorAll('.count');
+
+        counters.forEach(counter => {
+            const updateCount = () => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const speed = 200; // The lower the slower
+
+                const inc = target / speed;
+
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + inc);
+                    setTimeout(updateCount, 1);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+
+            updateCount();
+        });
+                            </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!--PART 5 ENDS HERE -->
+        <!--PART 6 STARTS HERE-->
+        <style>
+
+
+            @@media (max-width: 768px) {
+                .custom-div {
+                    display: none;
+                }
+            }
+        </style>
+        <script>
+    const customDiv = document.querySelector('.hides-div');
+
+        // Options for the Intersection Observer
+        const options = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.5 // Trigger the callback when 50% of the div is visible
+        };
+
+        const callback = (entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // The div is now visible, so apply the transition
+                    customDiv.style.transform = 'scale(1.1)';
+                } else {
+                    // The div is not visible, remove the transition
+                    customDiv.style.transform = 'scale(1)';
+                }
+            });
+        };
+
+        const observer = new IntersectionObserver(callback, options);
+
+        // Start observing the div
+        observer.observe(customDiv);
+        </script>
+        <div class="hides-div" style="transition: transform 0.5s;">
+
+            <style>
+                .section {
+                    margin: 10px;
+                    border: 1px solid #ccc;
+                    border-radius: 5px;
+                }
+
+                .section-header {
+                    cursor: pointer;
+                    background-color: #3498db;
+                    color: white;
+                    padding: 10px;
+                    border-top-left-radius: 5px;
+                    border-top-right-radius: 5px;
+                }
+
+                .section-content {
+                    display: none;
+                    padding: 10px;
+                    background-color: #fff;
+                    border-bottom-left-radius: 5px;
+                    border-bottom-right-radius: 5px;
+                }
+
+                    .section-content.open {
+                        display: block;
+                    }
+
+                .section.open {
+                    transition: max-height 0.5s ease-in-out;
+                }
+            </style>
+
+            <div class="container-fluid mt-4" style="background-image: linear-gradient(to left bottom, #e3cadc, #d0a5d2, #b184cf, #8269d0, #2054d3);">
+                <div class="row">
+                    <div class="col-md-6" style="margin-left: 30px; font-size: 25px;">
+                        <br>
+                        <br>
+                        <h1>Life <b>RSV</b></h1>
+                        <br>
+                        <div class="section">
+                            <div class="section-header" onclick="toggleSection(1)">Why Join bebo?  <img style="margin-left: 460px; width: 22px; height: 22px;" src="https://cdn-icons-png.flaticon.com/128/9678/9678508.png"></div>
+                            <div class="section-content" id="section-1">
+                                <p>We believe our team is our greatest asset. From top to bottom, our staff’s professionalism, innovation, capabilities, teamwork, and dedication to excellence have been essential to our past achievements and are vital to our future success. We offer our team members the most exciting and challenging projects across a diverse range of industries and platforms.</p>
+                            </div>
+                        </div>
+                        <div class="section">
+                            <div class="section-header" onclick="toggleSection(2)">Our Work Culture <img style="margin-left: 429px;width: 22px; height: 22px;" src="https://cdn-icons-png.flaticon.com/128/9678/9678508.png"></div>
+                            <div class="section-content" id="section-2">
+                                <p>We believe our team is our greatest asset. From top to bottom, our staff’s professionalism, innovation, capabilities, teamwork, and dedication to excellence have been essential to our past achievements and are vital to our future success. We offer our team members the most exciting and challenging projects across a diverse range of industries and platforms.</p>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <button type="button" class="btn btn-success" style="width: 200px; height: 50px; padding-bottom:10px;">DISCOVER NOW</button>
+                        <br>
+                        <br>
+                        <br>
+                    </div>
+                    <div class="col-md-5" style="padding-top: 30px;">
+                        <div class="video-container">
+                            <iframe width="100%" height="305" src="https://www.youtube.com/embed/hmAHjBIq1dU" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+        function toggleSection(sectionNumber) {
+            const section = document.getElementById(`section-${sectionNumber}`);
+            section.classList.toggle("open");
+
+            const otherSection = sectionNumber === 1 ? 2 : 1;
+            const otherSectionElement = document.getElementById(`section-${otherSection}`);
+            otherSectionElement.classList.remove("open");
+        }
+            </script>
+
+        </div>
+
+
+        <!--PART 6 ENDS HERE-->
+        <!--    PART 7 START HERE -->
+        <div class="container-fluid mt-4" style="position: relative; background-image: linear-gradient(to left bottom, #e3cadc, #d0a5d2, #b184cf, #8269d0, #2054d3;">
+            <div class="row">
+                <div class="col-md-6" style="padding-left: 0;">
+                    <img style="max-width: 100%;" src="https://www.mxtrautomation.com/wp-content/uploads/2022/08/iStock-1322245015-1024x614.jpg">
+                </div>
+                <div class="container col-md-5" style="font-size: 18px; padding-top: 30px; margin-left: 30px;">
+                    <h2><b>Join Our Crew, Come Build the Future With bebo</b></h2>
+                    <p>
+                        At bebo Technologies, our greatest assets are our employees. Come join a diverse community of talented individuals who work together to deliver excellence and bring software solutions to life.
+
+                        We provide a workplace that is collaborative and fosters productivity and teamwork. The leadership provides learning and growth opportunities for every individual to thrive professionally. Come join our talented group of testing experts and grow your career with us!!
+                    </p>
+                    <button type="button" class="btn btn-success" style="width: 200px; height: 50px; margin-left: 10px;">DISCOVER NOW</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid d-md-flex" style="position: relative; margin-top: -60px; width: 80%; background-image: linear-gradient(to left bottom, #295e86, #2a4f71, #28405d, #233249, #1d2536);">
+            <div class="col-md-4">
+                <img style="max-width: 50%; height: auto; padding-right: 4px;" src="https://cdn.unitycms.io/images/0JAaiuOkaGf9F2uD2jIjnq.jpg?op=ocroped&val=1200,1200,1000,1000,0,0&sum=Tesz3k0S7AI">
+            </div>
+            <div class="col-md-4">
+                <img style="max-width: 50%; height: auto; padding-right: 4px;" src="https://cdn.unitycms.io/images/0JAaiuOkaGf9F2uD2jIjnq.jpg?op=ocroped&val=1200,1200,1000,1000,0,0&sum=Tesz3k0S7AI">
+            </div>
+            <div class="col-md-4">
+                <img style="max-width: 50%; height: auto; padding-right: 4px;" src="https://cdn.unitycms.io/images/0JAaiuOkaGf9F2uD2jIjnq.jpg?op=ocroped&val=1200,1200,1000,1000,0,0&sum=Tesz3k0S7AI">
+            </div>
+        </div>
+
+        <!--    PART 7 ENDS HERE-->
+        <!--FOOTER ------------------------------------------------------------------------------------------------------------->
+
+        <div class="container-fluid mt-5 pt-5">
+            <h2 class="h1-responsive font-weight-bold my-4">Contact Us</h2>
+
+            <section class="mb-4">
+                <div class="row">
+                    <div class="col-md-8 mb-md-0 mb-5">
+                        <p class="w-responsive mx-auto mb-5">
+                            bebo Technologies is dedicated to providing high-caliber offshore software product engineering services overseen by a local management team with a proven record of success.
+                        </p>
+                        <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="md-form mb-0">
+                                        <input type="text" id="name" name="name" class="form-control" placeholder="*First Name" style="border: 0; border-bottom: 1px solid black; border-radius: 0;">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="md-form mb-0">
+                                        <input type="text" id="sname" name="email" class="form-control" placeholder="*Last Name" style="border: 0; border-bottom: 1px solid black; border-radius: 0;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="md-form mb-0" style="padding-top: 35px;">
+                                        <input type="text" id="email" name="name" class="form-control" placeholder="*Email" style="border: 0; border-bottom: 1px solid black; border-radius: 0;">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="md-form mb-0" style="padding-top: 35px;">
+                                        <input type="text" id="number" name="email" class="form-control" style="border: 0; border-bottom: 1px solid black; border-radius: 0;" placeholder="*Phone Number">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12" style="padding-top: 35px;">
+                                    <div class="md-form">
+                                        <textarea style="border: 0; border-bottom: 1px solid black; border-radius: 0;" type="text" id="message" name="message" rows="2" class="form-control md-textarea" placeholder="Message"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="text-center text-md-left" style="padding-top: 35px;">
+                            <a class="btn btn-primary w-100" onclick="document.getElementById('contact-form').submit();">Submit</a>
+                        </div>
+                        <div class="status"></div>
+                    </div>
+                    <div class="col-md-4">
+                        <h2 style="font-size: 30px;">Don't Want To Fill a Form?</h2>
+                        <div class="box">
+                            <div style="color: blue;">
+                                <i>Email Us</i>
+                            </div>
+                            <div class="content">
+                                <div class="header">
+                                    <p>Sales Inquiry</p>
+                                    <a class="email-link" style="color: pink;" href="mailto:sales@bebotechnologies.com">sales@bebotechnologies.com</a>
+                                </div>
+                                <br>
+                                <div class="header">
+                                    <p>Career</p>
+                                    <a class="email-link" style="color: pink;" href="mailto:hiring@bebotechnologies.com">hiring@bebotechnologies.com</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center text-md-left" style="padding-top: 20px;">
+                            <a class="btn btn-primary w-100" onclick="document.getElementById('contact-form').submit();">See Current Openings</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+        <!-------------------------------------------------------------->
+        <div style="background-image: linear-gradient(to left bottom, #0e3858, #3c304a, #452f38, #3e3230, #353433); height: 300px; color: white;">
+            <div class="container-fluid">
+                <div class="row d-flex align-items-center" style="padding-top: 60px;">
+                    <div class="col-lg-4 col-md-4 col-sm-12 text-center">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR3D53DFrp4aNblYzxuGGoFaSH6f38vWlYr9kj5mTa5ib9-NfFOs0EBhtYyvsmG9CP09o8&usqp=CAU" style="max-width: 100%;">
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <p>We have a dedicated group of vastly experienced and skilled professionals who consistently research, evaluate, and develop state-of-the-art solutions with the newest tools and technologies.</p>
+                        <div class="row">
+                            <div class="col-4">
+                                <a href="#">Sitemap</a>
+                            </div>
+                            <div class="col-4">
+                                <a href="#">Privacy Policy</a>
+                            </div>
+                            <div class="col-4">
+                                <a href="#">Terms and Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 text-center">
+                        <div class="input-group">
+                            <input id="search-input" type="search" class="form-control" placeholder="Search" style="radius:0;border: 0; border-bottom: 1px solid;" />
+                            <button id="search-button" type="button" class="btn btn-primary" style="width: 50px;">
+                                <i class="fas fa-search"><img style="width: 20px; height: 20px;" src="https://cdn-icons-png.flaticon.com/128/6372/6372641.png"></i>
+                            </button>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="row">
+                            <div class="col-3">
+                                <img style="width: 50px; height: 40px; padding-right: 7px;" src="https://cdn-icons-png.flaticon.com/128/4494/4494497.png">
+                            </div>
+                            <div class="col-3">
+                                <img style="width: 50px; height: 40px; padding-right: 7px;" src="https://cdn-icons-png.flaticon.com/128/2111/2111463.png" alt="Icon 2">
+                            </div>
+                            <div class="col-3">
+                                <img style="width: 50px; height: 40px; padding-right: 7px;" src="https://cdn-icons-png.flaticon.com/128/733/733547.png" alt="Icon 3">
+                            </div>
+                            <div class="col-3">
+                                <img style="width: 50px; height: 40px; padding-right: 7px;" src="https://cdn-icons-png.flaticon.com/128/4494/4494477.png" alt="Icon 4">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Copyright -->
+            <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.025);">
+                © Copyright bebo Technologies.
+                <a class="text-reset fw-bold" href="#">All rights reserved.</a>
+            </div>
+            <!-- Copyright -->
+        </div>
+
+    </body>
+</html>
